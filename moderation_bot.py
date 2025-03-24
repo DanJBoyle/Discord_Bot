@@ -9,6 +9,10 @@ with open('token.txt', 'r') as file:
     TOKEN = file.read()
 
 DEV_GUILD_ID = discord.Object(id = 1044032993666285619);  # Your guild ID
+with open('filename.txt', 'r') as file:
+    TOKEN = file.read()
+
+DEV_GUILD_ID = discord.Object(id = 1044032993666285619);  # Your guild ID
 
 # Enable intents
 intents = discord.Intents.default()
