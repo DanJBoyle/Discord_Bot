@@ -5,7 +5,10 @@ import json
 import re
 
 # Set up Discord bot
-TOKEN = "MTM1MzQyNTA5ODExNTEyMTE1Mw.GP3vJ0.mI1BfPFOp_Em_F_O6Ae8ywacwlBKa4T6MJD3W4"
+with open('token.txt', 'r') as file:
+    TOKEN = file.read()
+
+DEV_GUILD_ID = discord.Object(id = 1044032993666285619);  # Your guild ID
 
 # Enable intents
 intents = discord.Intents.default()
@@ -23,6 +26,8 @@ except (FileNotFoundError, json.JSONDecodeError) as e:
     print(f"Error loading banned words: {e}")
     banned_words = []
 
+## EVENTS ---------------------------------------------------------------------------------------------
+
 @client.event
 async def on_ready():
     for guild in client.guilds:
@@ -32,7 +37,6 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(f"--- Debugging on_message ---")
     
     # Check if the message is from the bot itself
     if message.author == client.user:
@@ -46,7 +50,9 @@ async def on_message(message):
         await message.delete()
         await message.channel.send(f"🚨 That's a naughty word! {message.author.mention}!")
         return
-    
+
+## COMMANDS ---------------------------------------------------------------------------------------------
+
 @client.command(name = "add_banned_word", 
                 description = "Add a banned word to the list")
 @commands.has_permissions(administrator=True)
