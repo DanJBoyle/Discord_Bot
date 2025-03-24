@@ -34,6 +34,12 @@ async def on_ready():
         for channel in guild.text_channels:
             await channel.send("Hello! I'm here to moderate your messages! 😇")
 
+    try:
+        synced = await client.tree.sync(guild=DEV_GUILD_ID)
+        print(f"Synced {len(synced)} commands to guild {DEV_GUILD_ID.id}")
+    except Exception as e:
+        print(f"Error syncing commands: {e}")
+
 
 @client.event
 async def on_message(message):
