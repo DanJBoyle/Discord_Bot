@@ -1,5 +1,4 @@
-# Discord Bot (Syne) Setup Guide
-
+# Discord Bot Setup Guide
 Welcome to our Discord Bot project! This guide will walk you through the steps needed to set up and run the Discord Bot for testing and development on your own Discord server.
 
 ## Prerequisites
@@ -8,7 +7,7 @@ Before you begin, make sure you have:
 - A Discord account and administrative access to a Discord server.
 - Python installed on your computer (version 3.6 or newer).
 - Git installed for cloning the repository.
-- Visual Studio Code installed, if you prefer using an IDE for Python development.
+- An IDE for Python development
 
 ## Step 1: Clone the Repository
 
@@ -32,13 +31,33 @@ cd [repository name]
 TOKEN = 'your_token_here'
 ```
 
-## Step 3: Install Dependencies
-Install the necessary Python packages:
-
+## Step 3: Creat Virtual Environment
+1. Open a terminal or command prompt.
+2. Navigate to your project directory:
 ```bash
-pip install discord spacy transformers
-python -m spacy download en_core_web_sm
+cd /path/to/your/project
 ```
+3. Run the following command to create a virtual environment:
+```bash
+python -m venv env
+```
+
+## Step 4: Activating the Virtual Environment
+- Windows Command Prompt:
+```bash
+venv_name\Scripts\activate
+```
+- Windows Powershell:
+```bash
+venv_name\Scripts\Activate.ps1
+```
+
+## Step 5: Installing Dependencies
+To install all dependencies from the **requirements.txt** file:
+```bash
+pip install -r requirements.txt
+```
+
 ## Step 4: Invite the Bot to Your Server
 
 1. In the application settings, go to the **OAuth2** tab and select **URL Generator**.
