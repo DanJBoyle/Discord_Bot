@@ -58,14 +58,14 @@ To install all dependencies from the **requirements.txt** file:
 pip install -r requirements.txt
 ```
 
-## Step 4: Invite the Bot to Your Server
+## Step 6: Invite the Bot to Your Server
 
 1. In the application settings, go to the **OAuth2** tab and select **URL Generator**.
 2. Under **Scopes**, check the box for **bot**.
 3. Under **Bot Permissions**, select the permissions your bot requires (e.g., Read Messages, Send Messages).
 4. Copy the generated URL, paste it into your web browser, and select the server to invite your bot to.
 
-## Step 5: Run the Bot and Verify the Bot Is Running
+## Step 7: Run the Bot and Verify the Bot Is Running
 1. Run the script:
 ```bash
 python moderation_bot.py
