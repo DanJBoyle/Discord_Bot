@@ -59,18 +59,18 @@ async def on_message(message):
 
 ## COMMANDS ---------------------------------------------------------------------------------------------
 
-@client.command(name = "add_banned_word", 
-                description = "Add a banned word to the list")
-@commands.has_permissions(administrator=True)
-async def add_banned_word(ctx, word: str):
+@client.tree.command(name = "add_banned_word", 
+                     description = "Add a banned word to the list",
+                     guild = DEV_GUILD_ID)
+async def add_banned_word(interaction: discord.Interaction, word: str):
     if word in banned_words:
-        await ctx.send(f"🤔 {word} is already a banned word!")
+        await interaction.response.send_message(f"🤔 {word} is already a banned word!")
         return
 
     banned_words.append(word)
     with open('bannedWords.json', 'w', encoding='utf-8') as f:
         json.dump({"banned_words": banned_words}, f, indent=4)
-    await ctx.send(f"✅ Added {word} to the banned words list!")
+    await interaction.response.send_message(f"✅ Added {word} to the banned words list!")
 
 # Run the bot
 client.run(TOKEN)
