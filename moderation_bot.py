@@ -5,7 +5,10 @@ import json
 import re
 
 # Set up Discord bot
-TOKEN = "MTM1MzQyNTA5ODExNTEyMTE1Mw.GP3vJ0.mI1BfPFOp_Em_F_O6Ae8ywacwlBKa4T6MJD3W4"
+with open('token.txt', 'r') as file:
+    TOKEN = file.read()
+
+DEV_GUILD_ID = discord.Object(id = 1044032993666285619);  # Your guild ID
 
 # Enable intents
 intents = discord.Intents.default()
