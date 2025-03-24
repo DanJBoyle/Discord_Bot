@@ -23,6 +23,8 @@ except (FileNotFoundError, json.JSONDecodeError) as e:
     print(f"Error loading banned words: {e}")
     banned_words = []
 
+## EVENTS ---------------------------------------------------------------------------------------------
+
 @client.event
 async def on_ready():
     for guild in client.guilds:
@@ -32,7 +34,6 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    print(f"--- Debugging on_message ---")
     
     # Check if the message is from the bot itself
     if message.author == client.user:
@@ -46,7 +47,9 @@ async def on_message(message):
         await message.delete()
         await message.channel.send(f"🚨 That's a naughty word! {message.author.mention}!")
         return
-    
+
+## COMMANDS ---------------------------------------------------------------------------------------------
+
 @client.command(name = "add_banned_word", 
                 description = "Add a banned word to the list")
 @commands.has_permissions(administrator=True)
