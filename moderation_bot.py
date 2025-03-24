@@ -1,4 +1,5 @@
 import discord
+import json
 import re
 
 # Set up Discord bot
@@ -11,11 +12,14 @@ intents.message_content = True  # To access message content
 
 client = discord.Client(intents=intents)
 
-# List of banned words
-with open('bannedWords.txt', 'r') as f:
-    banned_words = f.read()
-
-banned_words = banned_words.split('\n')
+# Load banned words from JSON
+try:
+    with open('bannedWords.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        banned_words = data.get("banned_words", [])
+except (FileNotFoundError, json.JSONDecodeError) as e:
+    print(f"Error loading banned words: {e}")
+    banned_words = []
 
 print(f"Banned words: {banned_words}")
 
