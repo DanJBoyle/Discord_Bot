@@ -1,4 +1,6 @@
 import discord
+from discord.ext import commands
+from discord import app_commands
 import json
 import re
 
@@ -10,7 +12,7 @@ intents = discord.Intents.default()
 intents.messages = True  # To read messages
 intents.message_content = True  # To access message content
 
-client = discord.Client(intents=intents)
+client = commands.Bot(command_prefix='!', intents=intents)
 
 # Load banned words from JSON
 try:
@@ -21,12 +23,11 @@ except (FileNotFoundError, json.JSONDecodeError) as e:
     print(f"Error loading banned words: {e}")
     banned_words = []
 
-print(f"Banned words: {banned_words}")
-
 @client.event
 async def on_ready():
-    channel = discord.utils.get(client.get_all_channels(), name="general")
-    await channel.send("Hello! I'm here to moderate your messages! 😇")
+    for guild in client.guilds:
+        for channel in guild.text_channels:
+            await channel.send("Hello! I'm here to moderate your messages! 😇")
 
 
 @client.event
@@ -44,7 +45,20 @@ async def on_message(message):
         print(f"Detected banned word in message: {text}")
         await message.delete()
         await message.channel.send(f"🚨 That's a naughty word! {message.author.mention}!")
-        return 
+        return
+    
+@client.command(name = "add_banned_word", 
+                description = "Add a banned word to the list")
+@commands.has_permissions(administrator=True)
+async def add_banned_word(ctx, word: str):
+    if word in banned_words:
+        await ctx.send(f"🤔 {word} is already a banned word!")
+        return
+
+    banned_words.append(word)
+    with open('bannedWords.json', 'w', encoding='utf-8') as f:
+        json.dump({"banned_words": banned_words}, f, indent=4)
+    await ctx.send(f"✅ Added {word} to the banned words list!")
 
 # Run the bot
 client.run(TOKEN)
