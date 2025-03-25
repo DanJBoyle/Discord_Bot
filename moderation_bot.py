@@ -111,6 +111,16 @@ async def clear_banned_words(interaction: discord.Interaction):
         json.dump({"banned_words": banned_words}, f, indent=4)
     await interaction.response.send_message("✅ Cleared all banned words!")
 
+@client.tree.command(name = "display_github",
+                     description = "Display the GitHub repository link",
+                     guild = DEV_GUILD_ID)
+async def display_github(interaction: discord.Interaction):
+    embed = discord.Embed(title="GitHub Repository", 
+                          url="https://github.com/DanJBoyle/Discord_Bot",
+                          description="Check out the code for this bot on GitHub!", 
+                          color=0x5865F2)
+    embed.set_thumbnail(url="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
+    await interaction.response.send_message(embed=embed)
 
 # Run the bot
 client.run(TOKEN)
