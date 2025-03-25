@@ -53,7 +53,7 @@ Tto activate your **Virtual Environment** run:
 ```bash
 venv_name\Scripts\activate
 ```
-Your prompt should now show **(env)**, indicating the virtual environment is active.
+Your prompt should now show <code>(env)</code>, indicating the virtual environment is active.
 
 To deactivate your **Virtual Environment** run:
 ```bash
@@ -81,7 +81,7 @@ Run the main script to launch the bot:
 ```bash
 python main.py
 ```
-To stop the bot, press Ctrl + C in the terminal.
+To stop the bot, press <code>Ctrl + C</code> in the terminal.
 
 ## Troubleshooting
 If the bot does not respond:
