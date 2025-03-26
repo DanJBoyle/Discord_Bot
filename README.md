@@ -49,13 +49,20 @@ python -m venv env
 ```
 
 ### Step 5: Activate the Virtual Environment
-Tto activate your **Virtual Environment** run:
+To activate your **Virtual Environment** run:
 ```bash
 venv_name\Scripts\activate
 ```
 Your prompt should now show <code>(env)</code>, indicating the virtual environment is active.
 
-To deactivate your **Virtual Environment** run:
+### Troubleshooting: PowerShell Execution Policy Issue
+If you encounter a security restriction preventing script execution, you can temporarily allow scripts to run by executing:
+```bash
+Set-ExecutionPolicy Unrestricted -Scope Process
+```
+
+### Deactivating the Virtual Environment
+To exit your **Virtual Environment** run:
 ```bash
 deactivate
 ```
