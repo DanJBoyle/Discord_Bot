@@ -66,17 +66,31 @@ Install all required dependencies:
 pip install -r requirements.txt
 ```
 
-## Step 7: Configure Bot Token
+### Step 7: Configure Bot Token
 Create a **.env** file in the project directory:
 ```bash
 touch .env
 ```
 Add your bot token to the **Environment File**:
 ```bash
-echo "token" > .env
+echo "TOKEN=your_token_here" > .env
 ```
 
-### Step 8: Start the Bot
+### Step 8: Configure **DEV_GUILD**
+1. Open Discord.
+2. Click on User Settings (gear icon at the bottom left).
+3. Navigate to Advanced under the App Settings section.
+4. Enable Developer Mode.
+5. Exit settings and go to the server list.
+6. Right-click on the server name in the sidebar.
+7. Click Copy ID.
+
+Add your **DEV_GUILD** to the **Environment File**:
+```bash
+echo "GUILD_ID=your_guild_id_here" > .env
+```
+
+### Step 9: Start the Bot
 Run the main script to launch the bot:
 ```bash
 python main.py
