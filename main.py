@@ -18,6 +18,13 @@ intents.message_content = True  # To access message content
 
 client = commands.Bot(command_prefix='!', intents=intents)
 
+async def force_sync():
+    try:
+        synced = await client.tree.sync(guild=DEV_GUILD)
+        print(f"Synced {len(synced)} commands to guild {DEV_GUILD.id}")
+    except Exception as e:
+        print(f"Error syncing commands: {e}")
+
 async def load_cogs():
     for cog in listdir('./cogs'):
         if cog.endswith('.py') == True:
@@ -38,10 +45,6 @@ async def on_ready():
             await channel.send("Hello! I'm here to moderate your messages! 😇")
 
     # Force command sync
-    try:
-        synced = await client.tree.sync(guild=DEV_GUILD)
-        print(f"Synced {len(synced)} commands to guild {DEV_GUILD.id}")
-    except Exception as e:
-        print(f"Error syncing commands: {e}")
+    await force_sync()
 
 asyncio.run(main())
