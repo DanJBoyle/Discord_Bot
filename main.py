@@ -3,12 +3,16 @@ from discord.ext import commands
 from discord import app_commands
 import json
 import re
+import asyncio
+from os import listdir
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Set up Discord bot
-with open('token.txt', 'r') as file:
-    TOKEN = file.read()
-
-DEV_GUILD_ID = discord.Object(id = 1044032993666285619);  # Your guild ID
+TOKEN = os.getenv("TOKEN")
+DEV_GUILD = int(os.getenv("DEV_GUILD_ID"))
 
 # Enable intents
 intents = discord.Intents.default()
@@ -37,8 +41,8 @@ async def on_ready():
 
     # Force command sync
     try:
-        synced = await client.tree.sync(guild=DEV_GUILD_ID)
-        print(f"Synced {len(synced)} commands to guild {DEV_GUILD_ID.id}")
+        synced = await client.tree.sync(guild=DEV_GUILD)
+        print(f"Synced {len(synced)} commands to guild {DEV_GUILD.id}")
     except Exception as e:
         print(f"Error syncing commands: {e}")
 
