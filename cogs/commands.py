@@ -6,7 +6,6 @@ from discord.ext import commands
 class GeneralCommands(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        
 
     @commands.command(name="display_github")
     async def display_github(self, interaction: discord.Interaction):

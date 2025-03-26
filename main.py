@@ -1,9 +1,7 @@
-import os
 import discord
 from discord.ext import commands
-import json
-import re
 import asyncio
+import os
 from os import listdir
 from dotenv import load_dotenv
 
@@ -12,7 +10,7 @@ load_dotenv()
 
 # Set up Discord bot
 TOKEN = os.getenv("TOKEN")
-DEV_GUILD = int(os.getenv("DEV_GUILD_ID"))
+DEV_GUILD = discord.Object(id=int(os.getenv("DEV_GUILD_ID"))) 
 
 # Enable intents
 intents = discord.Intents.default()

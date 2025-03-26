@@ -7,7 +7,6 @@ class Moderation(commands.Cog):
     def __init__(self, client):
         self.client = client
         self.load_banned_words()
-        print("Moderation cog loaded")
 
     def load_banned_words(self):
         try:
