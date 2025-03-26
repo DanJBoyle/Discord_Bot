@@ -67,13 +67,13 @@ pip install -r requirements.txt
 ```
 
 ## Step 7: Configure Bot Token
-Create a **token.txt** file in the project directory:
+Create a **.env** file in the project directory:
 ```bash
-touch token.txt
+touch .env
 ```
-Add your bot token:
+Add your bot token to the **Environment File**:
 ```bash
-echo "token" > token.txt
+echo "token" > .env
 ```
 
 ### Step 8: Start the Bot
