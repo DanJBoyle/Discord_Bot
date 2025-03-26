@@ -22,15 +22,10 @@ class Moderation(commands.Cog):
             self.banned_words = []
     
     def save_banned_words(self):
-        data = {"banned_words": self.banned_words}
-        with open('bannedWords.json', 'w', encoding='utf-8') as f:
-            json.dump(data, f, indent=4)
-    
-    def save_banned_words(self):
-        with open("data/bannedWords.json", "w", encoding="utf-8") as f:
+        with open("bannedWords.json", "w", encoding="utf-8") as f:
             json.dump({"banned_words": self.banned_words}, f, indent=4)
     
-    ## COMMANDS ---------------------------------------------------------------------------------------------
+    ## EVENTS ---------------------------------------------------------------------------------------------
     
     @commands.Cog.listener()
     async def on_message(self, message):
@@ -43,15 +38,17 @@ class Moderation(commands.Cog):
             await message.channel.send(f"🚨 That's a naughty word! {message.author.mention}!")
             return  
     
+    ## SLASH COMMANDS ---------------------------------------------------------------------------------------------
+    
     @app_commands.command(name="add_banned_word", description="Add a banned word to the list")
     @app_commands.guilds(DEV_GUILD)
     async def add_banned_word(self, interaction: discord.Interaction, word: str):
         if word in self.banned_words:
             await interaction.response.send_message(f"🤔 `{word}` is already a banned word!", ephemeral=True)
             return
-
+        
         self.banned_words.append(word)
-        await self.save_banned_words()
+        self.save_banned_words()
         await interaction.response.send_message(f"✅ Added `{word}` to the banned words list!")
 
     @app_commands.command(name="remove_banned_word", description="Remove a banned word from the list")
@@ -62,7 +59,7 @@ class Moderation(commands.Cog):
             return
 
         self.banned_words.remove(word)
-        await self.save_banned_words()
+        self.save_banned_words()
         await interaction.response.send_message(f"✅ Removed `{word}` from the banned words list!")
 
     @app_commands.command(name="list_banned_words", description="List all banned words")
@@ -83,7 +80,7 @@ class Moderation(commands.Cog):
             return
 
         self.banned_words.clear()
-        await self.save_banned_words()
+        self.save_banned_words()
         await interaction.response.send_message("✅ Cleared all banned words!")
         
 

@@ -1,5 +1,5 @@
-import discord
 import os
+import discord
 from discord.ext import commands
 from discord import app_commands
 
@@ -13,7 +13,6 @@ class GeneralCommands(commands.Cog):
                       description="Display the GitHub repository for this bot")
     @app_commands.guilds(DEV_GUILD)
     async def display_github(self, interaction: discord.Interaction):
-        print("Displaying GitHub repository")
         embed = discord.Embed(
             title="GitHub Repository",
             url="https://github.com/DanJBoyle/Discord_Bot",
@@ -22,7 +21,6 @@ class GeneralCommands(commands.Cog):
         )
         embed.set_thumbnail(url="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
         await interaction.response.send_message(embed=embed)
-        print("GitHub repository displayed")
 
 # Add the cog
 async def setup(bot):
