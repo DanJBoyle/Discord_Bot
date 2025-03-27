@@ -1,22 +1,25 @@
 import discord
 from discord.ext import commands
+from dotenv import load_dotenv
+
 import asyncio
 import os
 from os import listdir
-from dotenv import load_dotenv
+
+## SETUP -----------------------------------------------------------------------------------------------
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Set up Discord bot
 TOKEN = os.getenv("TOKEN")
 DEV_GUILD = discord.Object(id=int(os.getenv("DEV_GUILD_ID"))) 
 
-# Enable intents
 intents = discord.Intents.default()
-intents.message_content = True  # To access message content
+intents.message_content = True
 
 client = commands.Bot(command_prefix='!', intents=intents)
+
+## FUNCTIONS ------------------------------------------------------------------------------------------
 
 async def force_sync():
     try:
@@ -44,7 +47,6 @@ async def on_ready():
         for channel in guild.text_channels:
             await channel.send("Hello! I'm here to moderate your messages! 😇")
 
-    # Force command sync
     await force_sync()
 
 asyncio.run(main())

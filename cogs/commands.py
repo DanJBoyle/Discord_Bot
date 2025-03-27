@@ -1,7 +1,8 @@
-import os
 import discord
 from discord.ext import commands
 from discord import app_commands
+
+import os
 
 DEV_GUILD = discord.Object(id=int(os.getenv("DEV_GUILD_ID"))) 
 
