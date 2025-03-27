@@ -1,8 +1,6 @@
 import asyncio
 import discord
 from discord.ext import commands
-from discord import app_commands
-
 import os
 
 DEV_GUILD = discord.Object(id=int(os.getenv("DEV_GUILD_ID"))) 
@@ -14,7 +12,11 @@ DIFF = 5
 class SpamModeration(commands.Cog):
     def __init__(self, client):
         self.client = client
-
+    
+    async def remove_user(user_id):
+        await asyncio.sleep(DIFF)
+        users_map.pop(user_id, None)
+        print("Removed from map.")
     
     ## EVENTS ---------------------------------------------------------------------------------------------
     
@@ -38,13 +40,8 @@ class SpamModeration(commands.Cog):
                 user_data["msg_count"] = 1
                 user_data["last_message_time"] = current_time
                 users_map[user_id] = user_data
-
-                async def remove_user():
-                    await asyncio.sleep(DIFF)
-                    users_map.pop(user_id, None)
-                    print("Removed from map.")
             
-                asyncio.create_task(remove_user())
+                asyncio.create_task(self.remove_user(user_id))
             else:
                 msg_count += 1
                 if msg_count >= LIMIT:
@@ -59,16 +56,9 @@ class SpamModeration(commands.Cog):
                 "msg_count": 1,
                 "last_message_time": current_time
             }
-        
-            async def remove_user():
-                await asyncio.sleep(DIFF)
-                users_map.pop(user_id, None)
-                print("Removed from map.")
-        
-            asyncio.create_task(remove_user())
     
-    ## SLASH COMMANDS ---------------------------------------------------------------------------------------------
-    
+        
+            asyncio.create_task(self.remove_user(user_id))    
 
 # Add the cog
 async def setup(bot):
