@@ -15,7 +15,7 @@ Welcome to our **Chat Moderating Discord Bot!** This guide provides step-by-step
 
 Before you begin, make sure you have:
 - A Discord account and administrative access to a Discord server.
-- Python (version 3.6 or newer) installed on your system.
+- Python **version 3.12.9** installed on your system.
 - Git installed for cloning the repository.
 - An IDE for Python development
 
