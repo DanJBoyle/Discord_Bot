@@ -1,7 +1,7 @@
 # Chat Moderating Discord Bot
 
-## Discription
-Welcome to our **Chat Moderating Discord Bot!** This guide provides step-by-step instructions to set up, configure, and run the bot on your own Discord server for testing and development.
+## Description
+Welcome to our **Chat Moderating Discord Bot!** This guide provides step-by-step instructions to setup, configure, and run the bot on your own Discord server for testing and development.
 
 ## Features
 - Automatic message moderation
@@ -51,17 +51,10 @@ python -m venv env
 ### Step 5: Activate the Virtual Environment
 To activate your **Virtual Environment** run:
 ```bash
-venv_name\Scripts\activate
+env\Scripts\activate
 ```
 Your prompt should now show <code>(env)</code>, indicating the virtual environment is active.
 
-### Troubleshooting: PowerShell Execution Policy Issue
-If you encounter a security restriction preventing script execution, you can temporarily allow scripts to run by executing:
-```bash
-Set-ExecutionPolicy Unrestricted -Scope Process
-```
-
-### Deactivating the Virtual Environment
 To exit your **Virtual Environment** run:
 ```bash
 deactivate
@@ -76,11 +69,11 @@ pip install -r requirements.txt
 ### Step 7: Configure Bot Token
 Create a **.env** file in the project directory:
 ```bash
-touch .env
+echo "" > .env
 ```
 Add your bot token to the **Environment File**:
 ```bash
-echo "TOKEN=your_token_here" > .env
+echo "TOKEN="your_token_here"" > .env
 ```
 
 ### Step 8: Configure **DEV_GUILD**
@@ -94,14 +87,19 @@ echo "TOKEN=your_token_here" > .env
 
 Add your **DEV_GUILD** to the **Environment File**:
 ```bash
-echo "GUILD_ID=your_guild_id_here" > .env
+echo "DEV_GUILD_ID=your_guild_id_here" > .env
 ```
 
 ### Step 9: Start the Bot
+#### Method 1
 Run the main script to launch the bot:
 ```bash
 python main.py
 ```
+#### Method 2
+Inside of your python IDE press <code>Ctrl + F5</code>.
+
+
 To stop the bot, press <code>Ctrl + C</code> in the terminal.
 
 ## Troubleshooting
@@ -110,6 +108,12 @@ If the bot does not respond:
 2. Check that all dependencies are installed correctly.
 3. Ensure your bot token is correct and has not expired (reset it in the Developer Portal if needed).
 4. Look for errors in the console output and debug accordingly.
+
+### PowerShell Execution Policy Issue
+If you encounter a security restriction preventing script execution, you can temporarily allow scripts to run by executing:
+```bash
+Set-ExecutionPolicy Unrestricted -Scope Process
+```
 
 ## Contributing
 1. Fork the repository.
